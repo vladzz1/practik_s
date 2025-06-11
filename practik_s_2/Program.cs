@@ -6,8 +6,6 @@ namespace practik_s_2
     {
         static void Main(string[] args)
         {
-            object obj = new object();
-
             //завдання 1
 
             Console.WriteLine("It's easy to win forgiveness for being wrong;\nbeing right is what gets you into real trouble.\nBjarne Stroustrup\n");
@@ -106,10 +104,10 @@ namespace practik_s_2
             int end = int.Parse(str2);
             for (int i = start; i + start < end; i++)
             {
-                Console.WriteLine(i);
+                Console.Write(i + " ");
             }
-            Console.WriteLine("---------------------------\n");
-
+            Console.WriteLine("\n---------------------------\n");
+            
             //завдання 5
 
             Console.WriteLine("введіть перше число");
@@ -123,8 +121,9 @@ namespace practik_s_2
                 end = i;
                 for (int j = 0; j < end; j++)
                 {
-                    Console.WriteLine(i);
+                    Console.Write(i + " ");
                 }
+                Console.WriteLine();
             }
             Console.WriteLine("---------------------------\n");
 
@@ -143,14 +142,14 @@ namespace practik_s_2
             {
                 for (int i = 0; i < a1; i++)
                 {
-                    Console.WriteLine(str2);
+                    Console.Write(str2);
                 }
             }
             else if (key == 2)
             {
                 for (int i = 0; i < a1; i++)
                 {
-                    Console.WriteLine($"{str2}\n");
+                    Console.WriteLine(str2);
                 }
             }
             else
