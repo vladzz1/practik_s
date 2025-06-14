@@ -435,7 +435,7 @@
             Array.Sort(myArr2);
             PrintArr("Масив myArr2 післе сортування: ", myArr2);
             Console.WriteLine(Array.IndexOf(myArr1, 5));
-            Console.WriteLine("Число 5 знаходится в масиве на " +
+            Console.WriteLine("Число 5 знаходится в масиві на " +
                 Array.BinarySearch(myArr2, 5) + " позиції");
 
             Console.WriteLine("Максимальный елемент в масиві myArr2: " + myArr2.Max());
@@ -445,7 +445,7 @@
 
             Console.WriteLine("Кількість вимірів масиву myArr3: " + myArr2.Rank);
             int[,] myArr3 = { { 1, 2, 3 }, { 4, 5, 6 } };
-            Console.WriteLine("Количество измерений массива myArr3: " + myArr3.Rank);
+            Console.WriteLine("Кількість вимірів масиву myArr3: " + myArr3.Rank);
             */
             #endregion
             #region MethodsWithArray
