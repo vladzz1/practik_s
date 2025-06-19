@@ -33,7 +33,7 @@ namespace practik_s
             decimal p = 5.54m;
 
             Console.WriteLine("enter number: ");
-            string str = Console.ReadLine()!;//100
+            string str = Console.ReadLine()!;//100 Color
             Console.WriteLine(str + "!!!!");
             Console.WriteLine(str + 10 + "!!!!");
             int number = int.Parse(str);
