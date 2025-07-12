@@ -38,16 +38,16 @@
            arrayList1.Add(3.36m);
            arrayList1.Add(false);
 
-           Console.WriteLine($"Місткість после добавления одного элемента: {arrayList1.Capacity}");
+           Console.WriteLine($"Місткість після додавання одного елементу: {arrayList1.Capacity}");
            arrayList1.AddRange(new int[] { 2, 5, 48, 14 });
-           Console.WriteLine($"ВместМісткістьмость после добавления коллекции: {arrayList1.Capacity}");
+           Console.WriteLine($"Місткість після додавання колекції: {arrayList1.Capacity}");
            arrayList1.Capacity = 10;
-           Console.WriteLine($"Місткість задана через свойство:{arrayList1.Capacity}   ");
-           Console.WriteLine($"Фактическое количество элементов:{arrayList1.Count} ");
+           Console.WriteLine($"Місткість задана через властивість:{arrayList1.Capacity}   ");
+           Console.WriteLine($"Фактична кількість елементів:{arrayList1.Count} ");
            arrayList1.TrimToSize();
-           Console.WriteLine($"Місткість уменьшена до реального количества элементов:{arrayList1.Capacity}");
-           Console.WriteLine($"Элемент с индексом 2:{arrayList1[2]}");
-           Console.WriteLine("Все элементы коллекции:");
+           Console.WriteLine($"Місткість зменшена до дійсної кількості елементів:{arrayList1.Capacity}");
+           Console.WriteLine($"Елемент з індексом 2:{arrayList1[2]}");
+           Console.WriteLine("Всі елементи колекції:");
            //arrayList1.Sort();
            foreach (object item in arrayList1)
            {
@@ -67,27 +67,27 @@
                 }
             }
 
-           Console.Write("Исходная коллекция: ");
+           Console.Write("И?х/rн?я колекція: ");
            ArrayList arrayList = new ArrayList(new int[] { 1, 2, 3, 4 });
            foreach (int i in arrayList)
            {
                Console.Write($"{i} ");
            }
-           Console.Write("\n\nВставка элемента: ");
+           Console.Write("\n\nВставка елементу: ");
            arrayList.Insert(2, "Hello");
            //arrayList.Sort();
            foreach (object item in arrayList)
            {
                Console.Write($"{item} ");
            }
-           Console.Write("\n\nУдаление элемента: ");
+           Console.Write("\n\nВидалення елементу: ");
            arrayList.RemoveAt(3);
            foreach (object item in arrayList)
            {
                Console.Write($"{item} ");
            }
-           Console.WriteLine("\n\nИндекс элемента \"Hello\": " + arrayList.IndexOf("Hello"));
-           Console.Write("\nПолучение диапазона: ");
+           Console.WriteLine("\n\nІндекс елементу \"Hello\": " + arrayList.IndexOf("Hello"));
+           Console.Write("\nОтримання діапазону: ");
            ArrayList days = new ArrayList(new string[]{ "Sunday", "Monday", "Tuesday","Wednesday", "Thursday",
                "Friday","Saturday" });
            ArrayList onlyWork = new ArrayList(days.GetRange(1, 5));
@@ -95,7 +95,7 @@
            {
                Console.Write($"{s} ");
            }
-           Console.Write("\n\nСортировка коллекции: ");
+           Console.Write("\n\nСортування колекції: ");
            onlyWork.Sort();
            foreach (string s in onlyWork)
            {
@@ -106,9 +106,9 @@
             #endregion
             #region Stack
             /*
-            Stack stack1 = new Stack(); // вместимость по умолчанию
-            Stack stack2 = new Stack(7); // начальное значение емкости
-                                         // элементы копируются из указанной коллекции
+            Stack stack1 = new Stack(); // місткість по замовчуванню
+            Stack stack2 = new Stack(7); // початкове значення ємності
+                                         // елементи копіюються з вказаної колекції
             Stack stack3 = new Stack(new ArrayList { 3, 5 });
 
             Stack stack = new Stack();
@@ -127,8 +127,8 @@
                 Console.Write($"{item} ");
             }
             Console.WriteLine($"\n\nМетод Peek():{(string)stack.Peek()}");
-            Console.WriteLine("\nСуществует ли элемент \"ten\": " + stack.Contains("ten")); // false
-            Console.WriteLine("\nСуществует ли элемент \"two\": " + stack.Contains("two")); // true
+            Console.WriteLine("\nЧи існує елемент \"ten\": " + stack.Contains("ten")); // false
+            Console.WriteLine("\nЧи існує елемент \"two\": " + stack.Contains("two")); // true
             Console.Write("\nМетод CopyTo(): ");
             string[] strArr = new string[stack.Count];
             stack.CopyTo(strArr, 0);
@@ -136,11 +136,9 @@
             {
                 Console.Write($"{item} ");
             }
-            Console.WriteLine("\n\nКоличество элементов: " + stack.Count); // 3
+            Console.WriteLine("\n\nКількість елементів: " + stack.Count); // 3
             stack.Clear();
-            Console.WriteLine("\nКоличество элементов вызова метода Clear(): " + stack.Count); // 0
-
-
+            Console.WriteLine("\nКількість елементів виклику метода Clear(): " + stack.Count); // 0
 
             ///////////////////////////////////////
             var stackk = new Stack();
@@ -186,7 +184,7 @@
             string str = "Hello";
             ArrayList arrayList1 = new ArrayList(new int[] { 1, 2, 5, 8 });
             ArrayList arrayList3 = new ArrayList(10);
-            Console.WriteLine($"Вместимость по умолчанию:{arrayList1.Capacity}");
+            Console.WriteLine($"Місткість по замовчуванню:{arrayList1.Capacity}");
             arrayList1.Add("one");
             arrayList1.Add(3.14f);
             arrayList1.Add(0.999);
@@ -208,24 +206,24 @@
                 });
                 sortedList.Add(1, "one");
                 //sortedList.Add("one" ,1 );
-                Console.WriteLine("----- Вывод ключ-значение ------\n");
+                Console.WriteLine("----- Вивід ключ-значення ------\n");
                 foreach (object item in sortedList.Keys)
                 {
-                    Console.WriteLine($"Ключ: {item}  Значение: {sortedList[item]}");
+                    Console.WriteLine($"Ключ: {item}  Значення: {sortedList[item]}");
                 }
-                Console.WriteLine("\n------- Вывод ключ-значение по индексу--------\n");
+                Console.WriteLine("\n------- Вивід ключ-значення по індексу--------\n");
                 for (int i = 0; i < sortedList.Count; i++)
                 {
-                    Console.WriteLine($"Ключ: {sortedList.GetKey(i)} Значение: {sortedList.GetByIndex(i)}");
+                    Console.WriteLine($"Ключ: {sortedList.GetKey(i)} Значення: {sortedList.GetByIndex(i)}");
 
                 }
-                Console.WriteLine("\n---- Коллекция значений -----\n");
+                Console.WriteLine("\n---- Колекція значеннь -----\n");
                 foreach (object item in sortedList.Values)
                     Console.WriteLine(item);
-                Console.WriteLine("\n----- Удаление элемента по ключу 3------\n");
+                Console.WriteLine("\n----- Видалення елементу по ключу 3------\n");
                 sortedList.Remove(3);
             
-            Console.WriteLine($"Существует ли элемент 3:{sortedList.ContainsKey(3)}"); // false
+            Console.WriteLine($"Чи існує елемент 3:{sortedList.ContainsKey(3)}"); // false
             */
             /*
           Hashtable hash = new Hashtable();
@@ -235,18 +233,18 @@
           hash.Add("Pi", 3.14159);
           hash.Add(true, 3.14159);
           hash.Add(3.14, "PI");
-          Console.WriteLine("----- Вывод ключ-значение -------\n");
+          Console.WriteLine("----- Вивід ключ-значення -------\n");
 
           foreach (object item in hash.Keys)
           {
-              Console.WriteLine("Ключ: " + item + " Значение: " + hash[item]);
+              Console.WriteLine("Ключ: " + item + " Значення: " + hash[item]);
           }
 
-          Console.WriteLine("\n----- Коллекция значений после добавление элемента---- -\n");
+          Console.WriteLine("\n----- Колекція значень після додавання елементу---- -\n");
           foreach (object item in hash.Values) Console.WriteLine(item);
-          Console.WriteLine("\n----- Удаление элемента по ключу\"two\" ------\n");
+          Console.WriteLine("\n----- Видалення елементу по ключу\"two\" ------\n");
           hash.Remove("two");
-          Console.WriteLine($"Существует ли элемент \"two\":{hash.ContainsKey("two")}"); // false
+          Console.WriteLine($"Чи існує елемент \"two\":{hash.ContainsKey("two")}"); // false
             */
             #endregion
         }
