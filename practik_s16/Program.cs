@@ -7,183 +7,26 @@ namespace practik_s16
     [Serializable]
     class User
     {
-        private int id;
-        public int Id
-        {
-            get { return id; }
-            set
-            {
-                if (value >= 1000 && value <= 9999)
-                {
-                    id = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-            }
-        }
-        private string? login;
-        public string? Login
-        {
-            get { return login; }
-            set
-            {
-                int count = 0;
-                for (int i = 0; i < value?.Length; i++)
-                {
-                    if (Char.IsLetter(value[i]))
-                    {
-                        count++;
-                    }
-                }
-                if (count == value?.Length)
-                {
-                    login = value;
-                }
-                else
-                {
-                    throw new Exception("login повинен бути з букв");
-                }
-            }
-        }
-        private string? password;
-        public string? Password
-        {
-            get { return password; }
-            set
-            {
-                int count = 0;
-                for (int i = 0; i < value?.Length; i++)
-                {
-                    if (Char.IsLetter(value[i]))
-                    {
-                        count++;
-                    }
-                }
-                if (count == value?.Length && value?.Length >= 8)
-                {
-                    password = value;
-                }
-                else
-                {
-                    throw new Exception("password повинен бути з букв і мінімум з 8 букв");
-                }
-            }
-        }
-        private string? confirmPassword;
-        public string? ConfirmPassword
-        {
-            get { return confirmPassword; }
-            set
-            {
-                int count = 0;
-                for (int i = 0; i < value?.Length; i++)
-                {
-                    if (Char.IsLetter(value[i]))
-                    {
-                        count++;
-                    }
-                }
-                if (count == value?.Length && value?.Length >= 8)
-                {
-                    confirmPassword = value;
-                }
-                else
-                {
-                    throw new Exception("confirm password повинен бути з букв і мінімум з 8 букв");
-                }
-            }
-        }
-        private string? email;
-        public string? Email
-        {
-            get { return email; }
-            set
-            {
-                int count1 = 0, count2 = 0;
-                for (int i = 0; i < value?.Length - 10; i++)
-                {
-                    if (Char.IsLetter(value![i]) || Char.IsDigit(value[i]) || value[i] == '.')
-                    {
-                        if (value[i] == '.' && value[i + 1] == '.')
-                        {
-                            throw new Exception("в email до @ не може бути дві . підряд");
-                        }
-                        else
-                        {
-                            count1++;
-                        }
-                    }
-                } 
-                string str = "@gmail.com";
-                int k = 0;
-                for (int j = value!.Length - 10; j < value!.Length; j++)
-                {
-                    if (value[j] == str[k])
-                    {
-                        count2++;
-                    }
-                    k++;
-                }
-                if (count1 == value?.Length - 10 && count2 == 10)
-                {
-                    email = value;
-                }
-                else
-                {
-                    throw new Exception("не правильнмй email");
-                }
-            }
-        }
-        private string? creditCard;
-        public string? CreditCard
-        {
-            get { return creditCard; }
-            set
-            {
-                int count = 0;
-                for (int i = 0; i < value?.Length; i++)
-                {
-                    if (Char.IsDigit(value[i]))
-                    {
-                        count++;
-                    }
-                }
-                if (count == value?.Length && value?.Length == 16)
-                {
-                    creditCard = value;
-                }
-                else
-                {
-                    throw new Exception("credit card має складатись з цифр і з 16 цифр");
-                }
-            }
-        }
-        private string? phone;
-        public string? Phone
-        {
-            get { return phone; }
-            set
-            {
-                int count = 0;
-                for (int i = 0; i < value?.Length; i++)
-                {
-                    if (Char.IsDigit(value[i]))
-                    {
-                        count++;
-                    }
-                }
-                if (count == value?.Length && value?.Length == 12 && value[0] == '3' && value[1] == '8' && value[2] == '0')
-                {
-                    confirmPassword = value;
-                }
-                else
-                {
-                    throw new Exception("не правильний phone");
-                }
-            }
-        }
+        [Required(ErrorMessage = "id not setted")]
+        [Range(1000, 9999, ErrorMessage = "wrong id")]
+        public int Id { get; set; }
+        [Required(ErrorMessage = "login not setted")]
+        public string? Login { get; set; }
+        [Required(ErrorMessage = "password not setted")]
+        [Length(8, 1000, ErrorMessage = "wrong password")]
+        public string? Password { get; set; }
+        [Required(ErrorMessage = "confirm password not setted")]
+        [Length(8, 1000, ErrorMessage = "wrong confirm password")]
+        public string? ConfirmPassword { get; set; }
+        [Required(ErrorMessage = "email not setted")]
+        [EmailAddress]
+        public string? Email { get; set; }
+        [Required(ErrorMessage = "credit card not setted")]
+        [Length(16, 16, ErrorMessage = "wrong credit card")]
+        public string? CreditCard { get; set; }
+        [Required(ErrorMessage = "phone not setted")]
+        [Phone]
+        public string? Phone { get; set; }
         public User()
         {
             Random random = new Random();
@@ -209,6 +52,7 @@ namespace practik_s16
         static void Main(string[] args)
         {
             Dictionary<int, User> users = new Dictionary<int, User>();
+            bool isValid = true;
             int key;
                 while (true)
                 {
@@ -222,37 +66,52 @@ namespace practik_s16
                                 Console.Clear();
                                 return;
                             case 1:
-                                Console.Clear();
                                 int count = 1;
-                                Console.Write("\tвведіть id: ");
-                                int id = int.Parse(Console.ReadLine()!);
-                                foreach (var item in users)
+                                int id;
+                                string login, password, confirmPassword, email, creditCard, phone;
+                                do
                                 {
-                                    if (id == item.Value.Id)
+                                    Console.Clear();
+                                    count = 1;
+                                    Console.Write("\tвведіть id: ");
+                                    id = int.Parse(Console.ReadLine()!);
+                                    foreach (var item in users)
                                     {
-                                        throw new Exception("в словнику вже є користувач з таким id");
+                                        if (id == item.Value.Id)
+                                        {
+                                            Console.WriteLine("в словнику вже є користувач з таким id");
+                                        }
+                                        count++;
                                     }
-                                    count++;
-                                }
-                                Console.Write("\tвведіть login: ");
-                                string login = Console.ReadLine()!;
-                                Console.Write("\tвведіть password: ");
-                                string password = Console.ReadLine()!;
-                                Console.Write("\tвведіть confirm password: ");
-                                string confirmPassword = Console.ReadLine()!;
-                                Console.Write("\tвведіть email: ");
-                                string email = Console.ReadLine()!;
-                                Console.Write("\tвведіть credit card: ");
-                                string creditCard = Console.ReadLine()!;
-                                foreach (var item in users)
-                                {
-                                    if (creditCard == item.Value.CreditCard)
+                                    Console.Write("\tвведіть login: ");
+                                    login = Console.ReadLine()!;
+                                    Console.Write("\tвведіть password: ");
+                                    password = Console.ReadLine()!;
+                                    Console.Write("\tвведіть confirm password: ");
+                                    confirmPassword = Console.ReadLine()!;
+                                    Console.Write("\tвведіть email: ");
+                                    email = Console.ReadLine()!;
+                                    Console.Write("\tвведіть credit card: ");
+                                    creditCard = Console.ReadLine()!;
+                                    foreach (var item in users)
                                     {
-                                        throw new Exception("в словнику вже є користувач з таким credit card");
+                                        if (creditCard == item.Value.CreditCard)
+                                        {
+                                            Console.WriteLine("в словнику вже є користувач з таким credit card");
+                                        }
                                     }
-                                }
-                                Console.Write("\tвведіть phone: ");
-                                string phone = Console.ReadLine()!;
+                                    Console.Write("\tвведіть phone: ");
+                                    phone = Console.ReadLine()!;
+                                    var result = new List<ValidationResult>();
+                                    var context = new ValidationContext(users);
+                                    if (!(isValid = Validator.TryValidateObject(users, context, result, true)))
+                                    {
+                                        foreach (ValidationResult error in result)
+                                        {
+                                            Console.WriteLine(error.MemberNames.FirstOrDefault() + ": " + error.ErrorMessage);
+                                        }
+                                    }
+                                } while (!isValid);
                                 User user = new User(id, login, password, confirmPassword, email, creditCard, phone);
                                 users.Add(count, user);
                                 Console.Clear();
